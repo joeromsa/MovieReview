@@ -1,3 +1,5 @@
+import movieService from '../services/movies'
+
 const movieReducer = (state = [], action) => {
     switch(action.type) {
         case 'NEW_MOVIE_REVIEW': {
@@ -17,6 +19,9 @@ const movieReducer = (state = [], action) => {
             const id = action.data.id;
             return state.filter(movie => movie.id !== id);
         }
+        case 'INIT_MOVIES': {
+            return action.data
+        }
         default: 
             return state;
     }
@@ -34,6 +39,16 @@ export const addMovie = (values) => {
             rating: values.rating,
             id: generateId()
         }
+    }
+}
+
+export const initializeMovies = () => {
+    return async dispatch => {
+        const movies = await movieService.getAll()
+        dispatch({
+            type: 'INIT_MOVIES',
+            data: movies,
+        })
     }
 }
 

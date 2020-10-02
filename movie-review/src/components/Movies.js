@@ -2,18 +2,17 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 const Movie = ({movie}) => {
-    console.log(movie)
+ 
     return (
         <li>
             {movie.title} {movie.rating} {movie.year}
+            <img src={movie.img} alt="movie poster"/>
         </li>
     );
 }
 
 const Movies = () => {
-    const movies = useSelector(state => state);
-
-    console.log(movies)
+    const movies = useSelector(state => state.movies);
 
     return (
         <ul>
