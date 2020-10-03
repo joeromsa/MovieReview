@@ -1,6 +1,7 @@
 import React from 'react';
 import Search from './Search';
 import SearchedMovies from './SearchedMovies'
+import AddRating from './AddRating';
 
 const AddMovie = () => {
 
@@ -8,6 +9,7 @@ const AddMovie = () => {
         <div>
             <Search />
             <SearchedMovies />
+            <AddRating />
         </div>
     );
 }

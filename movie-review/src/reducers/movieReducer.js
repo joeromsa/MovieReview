@@ -27,19 +27,14 @@ const movieReducer = (state = [], action) => {
     }
 }
 
-const generateId = () =>
-  Number((Math.random() * 1000000).toFixed(0))
-
-export const addMovie = (values) => {
-    return {
-        type: 'NEW_MOVIE_REVIEW',
-        data: {
-            title: values.title,
-            year: values.year,
-            rating: values.rating,
-            id: generateId()
-        }
-    }
+export const addMovie = (object) => {
+    return async dispatch => {
+        const newReview = await movieService.addNewEntry(object);
+        dispatch({
+            type: 'NEW_MOVIE_REVIEW',
+            data: newReview
+        });
+    };
 }
 
 export const initializeMovies = () => {
@@ -48,9 +43,9 @@ export const initializeMovies = () => {
         dispatch({
             type: 'INIT_MOVIES',
             data: movies,
-        })
-    }
+        });
+    };
 }
 
-export default movieReducer
+export default movieReducer;
 

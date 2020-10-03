@@ -1,10 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectedChange } from '../reducers/selectedReducer';
 
 const SearchedMovie = ({movie}) => {
 
+    const dispatch = useDispatch();
+
     const buttonClick = (event) => {
         event.preventDefault();
+        dispatch(selectedChange(movie));
         console.log(movie.Title);
     }
 
